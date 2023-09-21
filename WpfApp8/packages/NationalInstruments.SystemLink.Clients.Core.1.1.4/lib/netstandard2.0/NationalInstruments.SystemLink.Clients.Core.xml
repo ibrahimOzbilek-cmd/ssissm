@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NationalInstruments.SystemLink.Clients.Core</name>
+    </assembly>
+    <members>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.ApiError">
+            <summary>
+            Represents the standard error structure for SystemLink API responses.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.ApiError.Name">
+            <summary>
+            Gets or sets the name of the error.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.ApiError.Code">
+            <summary>
+            Gets or sets the numeric code associated with the error.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.ApiError.Message">
+            <summary>
+            Gets or sets the error message.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.ApiError.Args">
+            <summary>
+            Gets or sets the list of positional arguments formatted into the error.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.ApiError.ResourceType">
+            <summary>
+            Gets or sets the type of resource associated with the error, if any.
+            Set this when setting <see cref="P:NationalInstruments.SystemLink.Clients.Core.ApiError.ResourceId"/>.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.ApiError.ResourceId">
+            <summary>
+            Gets or sets the ID of the resource associated with the error, if any.
+            Set <see cref="P:NationalInstruments.SystemLink.Clients.Core.ApiError.ResourceType"/> when setting this property.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.ApiError.InnerErrors">
+            <summary>
+            Gets or sets the list of inner errors.
+            </summary>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.ApiException">
+            <summary>
+            Represents errors that occur when calling SystemLink APIs.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.ApiException.#ctor">
+            <summary>
+            Initializes an empty exception.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.ApiException.#ctor(System.String)">
+            <summary>
+            Initializes an exception with a message.
+            </summary>
+            <param name="message">The message describing the error.</param>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.ApiException.#ctor(NationalInstruments.SystemLink.Clients.Core.ApiError)">
+            <summary>
+            Initializes an exception from an <see cref="T:NationalInstruments.SystemLink.Clients.Core.ApiError"/>.
+            </summary>
+            <param name="error">The error returned by the API.</param>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.ApiException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes an exception with a message and inner exception.
+            </summary>
+            <param name="message">The message describing the error.</param>
+            <param name="inner">The inner exception that caused the error.</param>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.ApiException.#ctor(NationalInstruments.SystemLink.Clients.Core.ApiError,System.Exception)">
+            <summary>
+            Initializes an exception from an <see cref="T:NationalInstruments.SystemLink.Clients.Core.ApiError"/> with an inner exception.
+            </summary>
+            <param name="error">The error returned by the API.</param>
+            <param name="inner">The inner exception that caused the error.</param>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.ApiException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Deserializes an exception.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.ApiException.Error">
+            <summary>
+            Gets the error information returned by the SystemLink API, or null if
+            the API did not return one or the error occurred trying to call the API.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.ApiException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.CloudHttpConfiguration">
+            <summary>
+            An <see cref="T:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration"/> specifically for use with SystemLink Cloud.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.CloudHttpConfiguration.#ctor(System.String)">
+            <summary>
+            Initializes a configuration for SystemLink Cloud using API
+            key-based authentication.
+            </summary>
+            <param name="apiKey">The API key to send with requests.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="apiKey"/> is null.</exception>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.Extensions.DateTimeExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.DateTime"/>.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.Extensions.DateTimeExtensions.ToDateTimeOffset(System.DateTime)">
+            <summary>
+            Converts a <see cref="T:System.DateTime"/> to a <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="dateTime">The <see cref="T:System.DateTime"/> to convert.</param>
+            <returns>The corresponding <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.Extensions.EnumerableExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.Extensions.EnumerableExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Indicates whether this <see cref="T:System.Collections.Generic.IEnumerable`1"/> is either null or empty.
+            </summary>
+            <typeparam name="T">The type parameter of the enumerable to check.</typeparam>
+            <param name="enumerable">The enumerable to check.</param>
+            <returns>True, if either <paramref name="enumerable"/> is null or <paramref name="enumerable"/> contains no elements.</returns>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.Extensions.EnumerableExtensions.DropNullOrEmpty(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Removes all null or empty strings from an enumerable.
+            </summary>
+            <param name="enumerable">The enumerable to drop nulls and empty strings from.</param>
+            <returns><paramref name="enumerable"/>, but with nulls and empty strings removed.</returns>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration">
+            <summary>
+            Contains common configuration information for using HTTP client APIs for SystemLink.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.DefaultTimeoutMilliseconds">
+            <summary>
+            The default value of <see cref="P:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.TimeoutMilliseconds"/> to use when
+            making API calls.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.#ctor(System.Uri)">
+            <summary>
+            Initializes a configuration with anonymous access. Any API calls
+            that require authorization will fail.
+            </summary>
+            <param name="serverUri">The scheme, host, and port (if not default)
+            of the web server hosting the SystemLink service to connect to.
+            Additional Uri properties such as <see cref="P:System.Uri.PathAndQuery"/> are ignored.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="serverUri"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">if <paramref name="serverUri"/> is missing scheme or host information.</exception>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.#ctor(System.Uri,System.String,System.String)">
+            <summary>
+            Initializes a configuration with username and password-based HTTP
+            authentication. Only valid for SystemLink server. HTTPS is highly recommended:
+            sending a password over HTTP can be intercepted by other devices with access
+            to the network.
+            </summary>
+            <param name="serverUri">The scheme, host, and port (if not default)
+            of the web server hosting the SystemLink service to connect to.
+            Additional Uri properties such as <see cref="P:System.Uri.PathAndQuery"/> are ignored.</param>
+            <param name="username">The name of the user to use when authorization is required.</param>
+            <param name="password">The user's password to use when authorization is required.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="serverUri"/>,
+            <paramref name="username"/>, or <paramref name="password"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">if <paramref name="serverUri"/> is missing scheme or host information.</exception>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.#ctor(System.Uri,System.String)">
+            <summary>
+            Initializes a configuration with API key-based authentication. Only
+            valid for SystemLink cloud. HTTPS is highly recommended: sending an
+            API key over HTTP can be intercepted by other devices with access
+            to the network.
+            </summary>
+            <param name="serverUri">The scheme, host, and port (if not default)
+            of the web server hosting the SystemLink service to connect to.
+            Additional Uri properties such as <see cref="P:System.Uri.PathAndQuery"/> are ignored.</param>
+            <param name="apiKey">The API key to send with requests.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="serverUri"/> or <paramref name="apiKey"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">if <paramref name="serverUri"/> is missing scheme or host information.</exception>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.#ctor(NationalInstruments.SystemLink.Clients.Core.HttpConfigurationFile)">
+            <summary>
+            Initializes a configuration from a SystemLink HTTP configuration file.
+            These files are automatically created on a system when the system is registered
+            using SystemLink client. They contain the HTTP connection information
+            of the SystemLink server to which the system is registered.
+            </summary>
+            <param name="configurationFile">The HTTP configuration file.</param>
+            <exception cref="T:System.ArgumentNullException">if <paramref name="configurationFile"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">if <paramref name="configurationFile"/> contains invalid data.</exception>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.TimeoutMilliseconds">
+            <summary>
+            Gets or sets the number of milliseconds before a request times out with an error.
+            Changing the timeout will not affect APIs that have already read the configuration.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.UserAgent">
+            <summary>
+            Gets or sets the string to pass the web server as the product name or names making the request,
+            or null to use a library-specific default.
+            Changing the user-agent will not affect APIs that have already read the configuration.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.ApiKeys">
+            <summary>
+            Gets the available API keys to use for authorization, or null if none were provided.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.ServerUri">
+            <summary>
+            Gets the <see cref="P:System.Uri.Scheme"/>, <see cref="P:System.Uri.Host"/>, and <see cref="P:System.Uri.Port"/>
+            of the web server hosting the SystemLink service to connect to. Additional Uri
+            properties such as <see cref="P:System.Uri.PathAndQuery"/> are ignored.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.Username">
+            <summary>
+            Gets the username to use for HTTP authentication, or null if none was provided.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration.Password">
+            <summary>
+            Gets the password to use for HTTP authentication, or null if none was provided.
+            </summary>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationFile">
+            <summary>
+            Represents a SystemLink HTTP configuration JSON file.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationFile.Id">
+            <summary>
+            The ID of this configuration.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationFile.DisplayName">
+            <summary>
+            A user-friendly display name for this configuration.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationFile.ConnectionType">
+            <summary>
+            The type of connection to use.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationFile.Uri">
+            <summary>
+            The URI of the SystemLink server.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationFile.ApiKey">
+            <summary>
+            The API key of this client.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationFile.CertPath">
+            <summary>
+            The path to the server's HTTPS certificate, relative to the Skyline Certificates directory.
+            </summary>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationManager">
+            <summary>
+            Factory for <see cref="T:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration"/> objects.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationManager.HttpMasterConfigurationId">
+            <summary>
+            The default ID of the SystemLink Server's configuration on systems registered using SystemLink Client.
+            </summary>
+        </member>
+        <member name="F:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationManager.HttpLocalhostConfigurationId">
+            <summary>
+            The default ID of the SystemLink Server's configuration on the SystemLink Server itself.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationManager.GetConfiguration">
+            <summary>
+            Gets the default configuration.
+            </summary>
+            <returns>The default configuration.</returns>
+            <exception cref="T:NationalInstruments.SystemLink.Clients.Core.ApiException">if the default configuration is not found.</exception>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationManager.GetConfiguration(System.String,System.Boolean)">
+            <summary>
+            Gets a configuration by ID.
+            </summary>
+            <param name="id">The ID of the configuration to find.</param>
+            <param name="enableFallbacks">Whether or not to fallback to other known configurations, if <paramref name="id"/> is unavailable.</param>
+            <returns>The configuration.</returns>
+            <exception cref="T:System.ArgumentException">if <paramref name="id"/> is null and <paramref name="enableFallbacks"/> is false.</exception>
+            <exception cref="T:NationalInstruments.SystemLink.Clients.Core.ApiException">if no configuration with the provided ID is found, and no fallbacks were viable.</exception>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationManager.Fallback">
+            <summary>
+            Attempts to acquire fallback HTTP configurations.
+            </summary>
+            <returns>The best available fallback configuration, or null, if no such configurations are available.</returns>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationManager.ReadConfigurations">
+            <summary>
+            Discovers and loads the HTTP configuration files.
+            </summary>
+            <returns>A dictionary mapping each loaded configuration ID to its corresponding <see cref="T:NationalInstruments.SystemLink.Clients.Core.HttpConfiguration"/>.</returns>
+            <exception cref="T:NationalInstruments.SystemLink.Clients.Core.ApiException">if multiple configurations with the same ID are simultaneously present.</exception>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationManager.ReadConfigurationFile(System.String)">
+            <summary>
+            Parses a single SystemLink HTTP configuration file.
+            </summary>
+            <param name="path">The path of the file.</param>
+            <returns>The parsed file, or null if there is no valid configuration present at the given path.</returns>
+            <exception cref="T:System.IO.IOException">if an error occurs while accessing the file.</exception>
+            <exception cref="T:System.UnauthorizedAccessException">if the current application does not have permission to access the configuration file.</exception>
+            <exception cref="T:Newtonsoft.Json.JsonException">if the file does not contain valid JSON.</exception>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.HttpConfigurationManager.HttpConfigurationsDirectory">
+            <summary>
+            Gets the platform-specific path to the HTTP Configurations directory.
+            </summary>
+            <returns>The path of the HTTP Configurations directory.</returns>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.IHttpConfiguration">
+            <summary>
+            Represents the configuration for accessing a SystemLink service over HTTP.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.IHttpConfiguration.ApiKeys">
+            <summary>
+            Gets the available API keys to use for authorization, or null if none were provided.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.IHttpConfiguration.ServerUri">
+            <summary>
+            Gets the <see cref="P:System.Uri.Scheme"/>, <see cref="P:System.Uri.Host"/>, and <see cref="P:System.Uri.Port"/>
+            of the web server hosting the SystemLink service to connect to. Additional Uri
+            properties such as <see cref="P:System.Uri.PathAndQuery"/> are ignored.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.IHttpConfiguration.Username">
+            <summary>
+            Gets the username to use for HTTP authentication, or null if none was provided.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.IHttpConfiguration.Password">
+            <summary>
+            Gets the password to use for HTTP authentication, or null if none was provided.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.IHttpConfiguration.TimeoutMilliseconds">
+            <summary>
+            Gets the number of milliseconds before a request times out with an error.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.IHttpConfiguration.UserAgent">
+            <summary>
+            Gets the string to pass the web server as the product name or names making the request,
+            or null to use a library-specific default.
+            </summary>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.PathConstants">
+            <summary>
+            Provides file and directory paths for the SystemLink client APIs.
+            </summary>
+        </member>
+        <member name="P:NationalInstruments.SystemLink.Clients.Core.PathConstants.ApplicationDataDirectory">
+            <summary>
+            Gets the platform-specific path to the common NI Application Data directory.
+            </summary>
+            <returns>The platform-specific path to the common NI Application Data directory.</returns>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.PathConstants.WindowsApplicationDataDirectory">
+            <summary>
+            Gets the NI Application Data directory on Windows.
+            </summary>
+            <returns>The NI Application Data directory on Windows.</returns>
+            <exception cref="T:System.PlatformNotSupportedException">if this method is called on a non-Windows system.</exception>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.PathConstants.TryGetRegistryKeyValue(System.String,System.String,System.String@)">
+            <summary>
+            Attempts to get a Windows Registry key value. Only valid on Windows platfors.
+            </summary>
+            <param name="address">The base key to get.</param>
+            <param name="keyName">The name of the sub-key to get.</param>
+            <param name="keyValue">The value of the key, if it was present.</param>
+            <returns>Whether or not the key was present.</returns>
+            <exception cref="T:System.PlatformNotSupportedException">if this method is called on a non-Windows system.</exception>
+        </member>
+        <member name="T:NationalInstruments.SystemLink.Clients.Core.TimestampUtilities">
+            <summary>
+            Provides utilities for reading and writing timestamps as strings.
+            Clients do not typically need to call methods on this class.
+            </summary>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.TimestampUtilities.ConvertToTimestamp(System.DateTimeOffset)">
+            <summary>
+            Converts the given <see cref="T:System.DateTimeOffset"/> into a string timestamp in
+            the standard format used in SystemLink.
+            </summary>
+            <param name="value">The date and time to convert.</param>
+            <returns>The string representation of the timestamp.</returns>
+        </member>
+        <member name="M:NationalInstruments.SystemLink.Clients.Core.TimestampUtilities.TryParseTimestamp(System.String,System.DateTimeOffset@)">
+            <summary>
+            Attempts to parse a string timestamp into a <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="timestamp">The timestamp to parse, in the standard format used in SystemLink.</param>
+            <param name="value">On success, set to the parsed date and time.</param>
+            <returns>True if the parsing succeeded, false if not.</returns>
+        </member>
+    </members>
+</doc>

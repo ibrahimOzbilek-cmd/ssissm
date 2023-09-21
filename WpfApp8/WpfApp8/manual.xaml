@@ -1,0 +1,604 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp8"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="WpfApp8.manual"
+        mc:Ignorable="d"
+         Title="Plastmak PVC" HorizontalAlignment="Center" Height="700" Width="1500" WindowState="Maximized" WindowStartupLocation="CenterScreen"  Icon="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\lgs.ico" >
+
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FFDDDDDD"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="20" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="ItemHeaderTemplate">
+            <TextBlock FontFamily="Segoe UI" HorizontalAlignment="Center" Text="{Binding FirstName}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ItemContentTemplate">
+            <Grid x:Name="Grid_Content">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="White">
+                    <Image Margin="1" Source="{Binding Photo}" Stretch="None" />
+                </Border>
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="{Binding PageHeader}"
+                           TextWrapping="Wrap"
+                           Grid.Row="1"
+                           FontFamily="Times New Roman"
+                           FontSize="22.667"
+                           Margin="0,15,0,5" />
+                <TextBlock Text="{Binding PageContent}" TextWrapping="Wrap" Grid.Row="2" Margin="10,0" />
+
+                <Grid Grid.Row="3" Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Fill="#FFA4A7BD" StrokeThickness="0" Height="1" Margin="0" VerticalAlignment="Top" />
+                    <TextBlock Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Notes}" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid Margin="0,0,0,107" x:Name="mnal" d:IsHidden="True">
+            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\frz.png" Margin="238,0,0,0" HorizontalAlignment="Left" Height="370" VerticalAlignment="Bottom" Width="201"/>
+            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\testere.png" Margin="0,0,248,0" HorizontalAlignment="Right" Width="218" Height="298" VerticalAlignment="Bottom"/>
+            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\beslemecliper.png" Width="671" Height="393" Margin="178,-55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\cikistutucu.png" Margin="0,50,197,0" Height="250" VerticalAlignment="Top" HorizontalAlignment="Right" Width="293"/>
+            <Viewbox HorizontalAlignment="Left" Stretch="Fill" VerticalAlignment="Bottom" Width="901"/>
+            <Label Content="X Gerçek Ölçü:" HorizontalAlignment="Left" Margin="454,0,0,130" VerticalAlignment="Bottom"/>
+            <Label Content="Y Gerçek Ölçü" HorizontalAlignment="Left" Margin="134,352,0,0" VerticalAlignment="Top"/>
+            <Label Content="Z Gerçek Ölçü" Margin="474,0,0,214" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="84"/>
+            <Label Content="TZ Gerçek Ölçü" HorizontalAlignment="Right" Margin="0,0,130,220" VerticalAlignment="Bottom"/>
+            <Label Content="TR AÇI" HorizontalAlignment="Right" Margin="0,0,504,215" VerticalAlignment="Bottom"/>
+            <Label x:Name="lb_x_real" Content="" HorizontalAlignment="Left" Margin="434,0,0,100" VerticalAlignment="Bottom" Width="123"/>
+            <Label x:Name="lb_tz_real" Content="" Margin="0,0,146,190" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="59"/>
+            <Label x:Name="lb_tr_real" Content="" HorizontalAlignment="Right" Margin="0,0,482,181" VerticalAlignment="Bottom" Width="89"/>
+            <dx:SimpleButton  Content="" HorizontalAlignment="Left" Margin="433,0,0,52" Width="57" PreviewMouseLeftButtonDown="jog_x_sol" PreviewMouseLeftButtonUp="fls"  VerticalAlignment="Bottom" Glyph="/img/left.png"/>
+            <dx:SimpleButton  Content="" HorizontalAlignment="Left" Margin="505,0,0,52" Width="57" PreviewMouseLeftButtonDown="jog_x_sag" PreviewMouseLeftButtonUp="fls"  VerticalAlignment="Bottom" Glyph="/img/right.png" />
+            <Label x:Name="lb_y_real" Content="" HorizontalAlignment="Left" Margin="119,383,0,0" VerticalAlignment="Top" Width="115"/>
+            <dx:SimpleButton  Content="SOL" HorizontalAlignment="Left" Margin="117,414,0,0" VerticalAlignment="Top" Width="44" Click="jog_y_sol" PreviewMouseLeftButtonUp="fls" Glyph="/img/left.png"/>
+            <dx:SimpleButton  Content="" HorizontalAlignment="Left" Margin="189,414,0,0" VerticalAlignment="Top" Width="48" Click="jog_y_sag" PreviewMouseLeftButtonUp="fls" Glyph="/img/right.png"/>
+            <Label x:Name="lb_z_real" Content="" HorizontalAlignment="Left" Margin="462,0,0,183" VerticalAlignment="Bottom" Width="124"/>
+            <dx:SimpleButton  Content="SOL" HorizontalAlignment="Left" Margin="602,0,0,214" VerticalAlignment="Bottom" Width="51" PreviewMouseLeftButtonDown="jog_z_sol" PreviewMouseLeftButtonUp="fls" Glyph="/img/up.png"/>
+            <dx:SimpleButton  Content="SAG" HorizontalAlignment="Left" Margin="602,0,0,170" VerticalAlignment="Bottom" Width="51" PreviewMouseLeftButtonDown="jog_z_sag" PreviewMouseLeftButtonUp="fls" Glyph="/img/down.png"/>
+            <dx:SimpleButton  Content="SOL" HorizontalAlignment="Right" Margin="0,0,72,221" VerticalAlignment="Bottom" Width="50" PreviewMouseLeftButtonDown="jog_tz_sol" PreviewMouseLeftButtonUp="fls" Glyph="/img/upyellow.png"/>
+            <dx:SimpleButton  Content="" HorizontalAlignment="Right" Margin="0,0,72,174" VerticalAlignment="Bottom" Width="50" PreviewMouseLeftButtonDown="jog_tz_sag" PreviewMouseLeftButtonUp="fls" Glyph="/img/downyellow.png"/>
+            <dx:SimpleButton  Content="" HorizontalAlignment="Right" Margin="0,0,534,140" Width="49" PreviewMouseLeftButtonDown="jog_tr_sag" PreviewMouseLeftButtonUp="fls" VerticalAlignment="Bottom" Glyph="/img/leftdegreered.png"/>
+            <dx:SimpleButton  Content="SAG" HorizontalAlignment="Right" Margin="0,0,474,138" VerticalAlignment="Bottom" Width="50" PreviewMouseLeftButtonDown="jog_tr_sag" PreviewMouseLeftButtonUp="fls" Glyph="/img/rightdegreered.png"/>
+            <Label Content="BZ Gerçek Ölçü" Margin="119,67,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"/>
+            <Label x:Name="lb_bz_real" Content="" HorizontalAlignment="Left" Margin="119,99,0,0" VerticalAlignment="Top" Width="95"/>
+            <dx:SimpleButton  Content="SOL" HorizontalAlignment="Left" Margin="219,67,0,0" VerticalAlignment="Top" Width="47" PreviewMouseLeftButtonUp="fls" Glyph="/img/upblue.png" Click="jog_bz_up"/>
+            <dx:SimpleButton  Content="SAG" HorizontalAlignment="Left" Margin="219,107,0,0" VerticalAlignment="Top" Width="47" PreviewMouseLeftButtonUp="fls" Glyph="/img/downblue.png" Click="jog_bz_down"/>
+            <Label Content="BX Gerçek Ölçü" Margin="126,142,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"/>
+            <Label x:Name="lb_bx_real" Content="" HorizontalAlignment="Left" Margin="119,172,0,0" VerticalAlignment="Top" Width="99"/>
+            <dx:SimpleButton  Content="SOL" HorizontalAlignment="Left" Margin="119,207,0,0" VerticalAlignment="Top" Width="45" PreviewMouseLeftButtonUp="fls" Glyph="/img/leftgreen.png" Click="jog_bx_sol"/>
+            <dx:SimpleButton  Content="SAG" HorizontalAlignment="Left" Margin="178,207,0,0" VerticalAlignment="Top" Width="46" PreviewMouseLeftButtonUp="fls" Glyph="/img/rightgreen.png" Click="jog_bx_sag"/>
+            <Label Content="Testere Start" HorizontalAlignment="Right" Margin="0,0,493,99" Height="26" VerticalAlignment="Bottom"/>
+            <dx:SimpleButton  Content="START" HorizontalAlignment="Right" Margin="0,0,493,69" VerticalAlignment="Bottom" Width="62" PreviewMouseLeftButtonDown="jog_tz_sol" PreviewMouseLeftButtonUp="fls" Glyph="/img/cirularsaw.png"/>
+            <Label Content="BY Gerçek Ölçü" Margin="475,107,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"/>
+            <Label x:Name="lb_by_real" Content="" HorizontalAlignment="Left" Margin="475,137,0,0" VerticalAlignment="Top" Width="99"/>
+            <dx:SimpleButton  Content="SOL" HorizontalAlignment="Left" Margin="469,172,0,0" VerticalAlignment="Top" Width="48" PreviewMouseLeftButtonUp="fls" Glyph="/img/leftorange.png" Click="jog_by_sol"/>
+            <Label Content="CY Gerçek Ölçü" Margin="0,64,99,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="96"/>
+            <dx:SimpleButton Content="SimpleButton" HorizontalAlignment="Left" Height="0" Margin="679,485,0,0" VerticalAlignment="Top" Width="0"/>
+            <Label x:Name="lb_e9_real" Content="" HorizontalAlignment="Right" Margin="0,94,96,0" VerticalAlignment="Top" Width="99"/>
+            <dx:SimpleButton  Content="SOL" HorizontalAlignment="Right" Margin="0,129,157,0" VerticalAlignment="Top" Width="48" PreviewMouseLeftButtonUp="fls" Glyph="/img/leftgreen.png" Click="jog_cy_sol"/>
+            <dx:SimpleButton  Content="SAG" HorizontalAlignment="Right" Margin="0,129,90,0" VerticalAlignment="Top" Width="46" PreviewMouseLeftButtonUp="fls" Glyph="/img/rightgreen.png" Click="jog_cy_sag"/>
+            <Label Content="Tutucu Piston" Margin="0,75,492,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="85"/>
+            <dx:SimpleButton  Content="AÇ" HorizontalAlignment="Right" Margin="0,107,513,0" VerticalAlignment="Top" Width="65" PreviewMouseLeftButtonUp="fls" Height="26"/>
+            <TextBox x:Name="cabbar" HorizontalAlignment="Left" MouseLeave="TextBox_MouseLeave" Margin="679,172,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="cabbar1" Content="" Margin="679,199,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"/>
+            <dx:SimpleButton Content="SimpleButton" HorizontalAlignment="Left" Height="56"  Margin="739,341,0,0" VerticalAlignment="Top" Width="111"/>
+            <dx:SimpleButton  Content="SAG" HorizontalAlignment="Left" Margin="528,172,0,0" VerticalAlignment="Top" Width="49" PreviewMouseLeftButtonUp="fls" Glyph="/img/rightorange.png" Click="jog_by_sag"/>
+            <Label Content="Jog Kontrol" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="39" Width="108" FontSize="20"/>
+        </Grid>
+        <Grid x:Name="oto" Margin="0,0,0,107" d:IsHidden="True">
+            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\exprof.jpg"  Margin="585,63,199,343"/>
+
+            <Label Margin="10,10,829,534" Content="WİLKOMMEN OTO SF"/>
+            <Button Width="190" Height="90" Content="Referans" Margin="31,104,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="22"/>
+
+            <Button Width="190" Height="90" Content="Malzeme&#xA;Hazırla" Margin="31,199,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="22"/>
+            <Button Width="190" Height="90" Content="İşleme Start" Margin="31,294,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="22"/>
+            <CheckBox Content="Otomatik Start" Margin="31,389,0,0" FontSize="16" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="140"/>
+        </Grid>
+        <Grid x:Name="recete" Margin="0,0,0,107" d:IsHidden="True">
+            <Label Content="WİLKOMMEN RECETE SF" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180"/>
+            <dx:SimpleButton x:Name="openfile" Margin="350,152,0,0" Glyph="/img/cnc_ico.png" Height="108" VerticalAlignment="Top" HorizontalAlignment="Left" Width="118" PreviewMouseLeftButtonDown="open_file"/>
+            <Label x:Name="filepathname" Content="" HorizontalAlignment="Left" Margin="475,40,0,0" VerticalAlignment="Top" Width="128"/>
+            <dx:SimpleButton Margin="421,328,0,0" Glyph="/img/cnc_ico.png" Height="55" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96" PreviewMouseLeftButtonDown="splittext"/>
+            <dxe:ListBoxEdit x:Name="txtedit" HorizontalAlignment="Center" Margin="0,152,0,0" VerticalAlignment="Top" Height="212" Width="326"/>
+            <Label x:Name="profilecounter" Content="Label" HorizontalAlignment="Left" Margin="1107,119,0,0" VerticalAlignment="Top" Height="37" Width="121"/>
+        </Grid>
+        <Grid x:Name="sifirlama" Margin="0,0,0,107" d:IsHidden="True">
+
+            <Grid>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\frezlzeemepng.png" Margin="319,-42,0,0" HorizontalAlignment="Left" Width="951" Height="732" VerticalAlignment="Top"/>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool10" MouseLeftButtonDown="sifirlama_tool10" Width="95" Height="221" HorizontalAlignment="Left" Margin="781,346,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool9" MouseLeftButtonDown="sifirlama_tool9" Width="158" Height="63" HorizontalAlignment="Left" Margin="520,210,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool8" MouseLeftButtonDown="sifirlama_tool8" Width="57" Height="156" HorizontalAlignment="Left" Margin="726,368,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool7" MouseLeftButtonDown="sifirlama_tool7" Width="190" Height="75" HorizontalAlignment="Left" Margin="890,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool6" MouseLeftButtonDown="sifirlama_tool6" Width="156" Height="63" HorizontalAlignment="Left" Margin="895,210,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool5" MouseLeftButtonDown="sifirlama_tool5" Width="195" Height="63" HorizontalAlignment="Left" Margin="831,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-46.142"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" x:Name="img_tool4" MouseLeftButtonDown="sifirlama_tool4" Stretch="Fill" Width="64" Height="170" HorizontalAlignment="Left" Margin="784,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" x:Name="img_tool3" MouseLeftButtonDown="sifirlama_tool3" Stretch="Fill" Width="158" Height="74" HorizontalAlignment="Left" Margin="552,364,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.285,0.99">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-43.243"/>
+                            <TranslateTransform X="35.341" Y="17.681"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool1" MouseLeftButtonDown="sifirlama_tool1" Margin="726,25,0,0" HorizontalAlignment="Left" Width="58" Height="163" VerticalAlignment="Top" />
+                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" x:Name="img_tool2" MouseLeftButtonDown="sifirlama_tool2" Margin="550,92,0,0" RenderTransformOrigin="0.538,0.507" HorizontalAlignment="Left" Width="176" Height="74" VerticalAlignment="Top" Stretch="Fill">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="44.759"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Grid>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,54,0,0" HorizontalAlignment="Left" Width="174" Height="285" VerticalAlignment="Top"/>
+            <Label Content="WİLKOMMEN SİFİRLAMA SF" Margin="0,0,1341,538"/>
+            <Label Content="X" Margin="10,79,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+            <Label Content="Y" Margin="10,113,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+            <Label Content="Z" Margin="10,147,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+            <Label Content="X" Margin="10,241,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+            <Label Content="Y" Margin="10,275,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+            <Label Content="Z" Margin="10,309,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+            <Label Content="Absolute" Margin="44,54,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="86"/>
+            <Label Content="Machine" Margin="44,216,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="86"/>
+            <Label Content="0" Margin="36,79,1378,469" FontSize="20"/>
+            <Label Content="0" Margin="36,113,1378,435" FontSize="20"/>
+            <Label Content="0" Margin="36,146,1378,402" FontSize="20"/>
+            <Label Content="0" Margin="36,241,1378,307" FontSize="20"/>
+            <Label Content="0" Margin="36,275,1378,273" FontSize="20"/>
+            <Label Content="0" Margin="36,309,1378,238" FontSize="20"/>
+
+            <Grid x:Name="tool1" Margin="0,82,0,171">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="267,73,0,0" Height="187" VerticalAlignment="Top" HorizontalAlignment="Left" Width="189"/>
+                <Label x:Name="lb_tool_selection" Content="Takım 1" Margin="276,79,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="86"/>
+                <Label Content="X" Margin="284,117,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+                <Label Content="Y" Margin="284,151,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+                <Label Content="Z" Margin="284,185,0,0" FontSize="20" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16"/>
+                <TextBox x:Name="tb_tool1_x" Text="0" Margin="319,123,0,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"/>
+                <dx:SimpleButton Content="Kaydet" HorizontalAlignment="Left" Height="25" Margin="362,83,0,0" VerticalAlignment="Top" Width="79" Click="sifirlama_kaydet"/>
+                <TextBox x:Name="tb_tool1_y" Text="0" Margin="319,157,0,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"/>
+                <TextBox x:Name="tb_tool1_z" Text="0" Margin="319,188,0,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"/>
+                <dx:SimpleButton x:Name="tl_tool1_pistonac" Content="Piston Aç" Margin="276,219,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" Click="sifirlama_pistonac"/>
+                <dx:SimpleButton x:Name="tl_tool1_motorcalistir" Content="Motor Calistir" Margin="367,219,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" Click="sifirlama_motorac"/>
+            </Grid>
+
+
+
+        </Grid>
+        <Grid x:Name="ayarlar" Margin="0,0,0,107">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <dxwui:PageView x:Name="Ayarlar" Header="Ayarlar" ShowBackButton="False" AnimationType="SlideHorizontal"  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+
+                <dxwui:PageViewItem x:Name="servo" Header="Servo" Width="73" Height="60" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <Grid Background="White">
+                        <dxwui:SlideView Header="Servo Ayarları">
+                            <dxwui:SlideViewItem Header="Eksen 1" Width="400">
+                                <Grid Background="#FFE5E5E5">
+
+
+                                    <Label Content="Encoder Çarpan Değeri" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Kalkış Rampası" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Duruş Rampası" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensörüne Gitme" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensöründen Dönüş Hızı" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="229" Height="27"/>
+                                    <Label Content="Çalışma Hızı" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Manual Hız" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Eksen Limit" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Parça Tolerans" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Gerçek Değer" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <dx:SimpleButton Margin="82,0,0,49" Glyph="/img/left.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="99"/>
+                                    <dx:SimpleButton Margin="0,0,80,49" Glyph="/img/right.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="99"/>
+                                    <TextBox x:Name="tb_x_enc" Text="0" Margin="0,10,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="xlostfocus"/>
+                                    <TextBox x:Name="tb_x_kalkis" Text="0"  Margin="0,37,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="xlostfocus"/>
+                                    <TextBox x:Name="tb_x_durus" Text="0"  HorizontalAlignment="Right" Margin="0,64,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="xlostfocus"/>
+                                    <TextBox x:Name="tb_x_gohome" Text="0"  HorizontalAlignment="Right" Margin="0,91,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="xlostfocus"/>
+                                    <TextBox x:Name="tb_x_backhome" Text="0"  HorizontalAlignment="Right" Margin="0,118,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="xlostfocus"/>
+                                    <TextBox x:Name="tb_x_workspd" Text="0"  HorizontalAlignment="Right" Margin="0,145,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="xlostfocus"/>
+                                    <TextBox x:Name="tb_x_manspd" Text="0"  HorizontalAlignment="Right" Margin="0,172,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="xlostfocus"/>
+                                    <TextBox x:Name="tb_x_axislimit" Text="0" HorizontalAlignment="Right" Margin="0,199,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="xlostfocus"/>
+                                    <TextBox x:Name="tb_x_ofset" Text="0"  HorizontalAlignment="Right" Margin="0,226,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="xlostfocus"/>
+                                    <Label Content="0"  HorizontalAlignment="Right" Margin="0,253,32,0" VerticalAlignment="Top" Width="91" Height="27"/>
+
+                                </Grid>
+                            </dxwui:SlideViewItem>
+
+                            <dxwui:SlideViewItem Header="Eksen 2" Width="400">
+                                <Grid Background="#FFE5E5E5">
+                                    <Label Content="Encoder Çarpan Değeri" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Kalkış Rampası" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Duruş Rampası" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensörüne Gitme" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensöründen Dönüş Hızı" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="229" Height="27"/>
+                                    <Label Content="Çalışma Hızı" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Manual Hız" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Eksen Limit" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Parça Tolerans" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Gerçek Değer" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <dx:SimpleButton Margin="82,0,0,49" Glyph="/img/left.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="99"/>
+                                    <dx:SimpleButton Margin="0,0,80,49" Glyph="/img/right.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="99"/>
+                                    <TextBox x:Name="tb_y_enc" Text="0" Margin="0,10,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="ylostfocus"/>
+                                    <TextBox x:Name="tb_y_kalkis" Text="0"  Margin="0,37,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="ylostfocus"/>
+                                    <TextBox x:Name="tb_y_durus" Text="0"  HorizontalAlignment="Right" Margin="0,64,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="ylostfocus"/>
+                                    <TextBox x:Name="tb_y_gohome" Text="0"  HorizontalAlignment="Right" Margin="0,91,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="ylostfocus"/>
+                                    <TextBox x:Name="tb_y_backhome" Text="0"  HorizontalAlignment="Right" Margin="0,118,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="ylostfocus"/>
+                                    <TextBox x:Name="tb_y_workspd" Text="0"  HorizontalAlignment="Right" Margin="0,145,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="ylostfocus"/>
+                                    <TextBox x:Name="tb_y_manspd" Text="0"  HorizontalAlignment="Right" Margin="0,172,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="ylostfocus"/>
+                                    <TextBox x:Name="tb_y_axislimit" Text="0" HorizontalAlignment="Right" Margin="0,199,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="ylostfocus"/>
+                                    <TextBox x:Name="tb_y_ofset" Text="0"  HorizontalAlignment="Right" Margin="0,226,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="ylostfocus"/>
+                                    <Label Content="0"  HorizontalAlignment="Right" Margin="0,253,32,0" VerticalAlignment="Top" Width="91" Height="27"/>
+                                </Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Eksen 3" Width="400">
+                                <Grid Background="#FFE5E5E5">
+                                    <Label Content="Encoder Çarpan Değeri" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="171" Height="27" />
+                                    <Label Content="Kalkış Rampası" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Duruş Rampası" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensörüne Gitme" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensöründen Dönüş Hızı" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="229" Height="27"/>
+                                    <Label Content="Çalışma Hızı" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Manual Hız" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Eksen Limit" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Parça Tolerans" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Gerçek Değer" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <dx:SimpleButton Margin="82,0,0,49" Glyph="/img/left.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="99"/>
+                                    <dx:SimpleButton Margin="0,0,80,49" Glyph="/img/right.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="99"/>
+                                    <TextBox Text="0" x:Name="tb_z_enc" Margin="0,10,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="zlostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_z_kalkis" Margin="0,37,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="zlostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_z_durus" HorizontalAlignment="Right" Margin="0,64,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="zlostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_z_gohome" HorizontalAlignment="Right" Margin="0,91,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="zlostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_z_backhome" HorizontalAlignment="Right" Margin="0,118,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="zlostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_z_workspd" HorizontalAlignment="Right" Margin="0,145,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="zlostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_z_manspd" HorizontalAlignment="Right" Margin="0,172,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="zlostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_z_axislimit" HorizontalAlignment="Right" Margin="0,199,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="zlostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_z_ofset" HorizontalAlignment="Right" Margin="0,226,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="zlostfocus"/>
+                                    <Label Content="0"  HorizontalAlignment="Right" Margin="0,253,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="zlostfocus"/>
+                                </Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Eksen 4" Width="400">
+                                <Grid Background="#FFE5E5E5">
+                                    <Label Content="Encoder Çarpan Değeri" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Kalkış Rampası" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Duruş Rampası" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensörüne Gitme" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensöründen Dönüş Hızı" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="229" Height="27"/>
+                                    <Label Content="Çalışma Hızı" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Manual Hız" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Eksen Limit" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Parça Tolerans" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Gerçek Değer" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <dx:SimpleButton Margin="82,0,0,49" Glyph="/img/left.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="99"/>
+                                    <dx:SimpleButton Margin="0,0,80,49" Glyph="/img/right.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="99"/>
+                                    <TextBox Text="0"  x:Name="tb_e4_enc" Margin="0,10,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e4lostfocus"/>
+                                    <TextBox Text="0"  x:Name="tb_e4_kalkis" Margin="0,37,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e4lostfocus"/>
+                                    <TextBox Text="0"  x:Name="tb_e4_durus" HorizontalAlignment="Right" Margin="0,64,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e4lostfocus"/>
+                                    <TextBox Text="0"  x:Name="tb_e4_gohome" HorizontalAlignment="Right" Margin="0,91,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e4lostfocus"/>
+                                    <TextBox Text="0"  x:Name="tb_e4_backhome" HorizontalAlignment="Right" Margin="0,118,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e4lostfocus"/>
+                                    <TextBox Text="0"  x:Name="tb_e4_workspd" HorizontalAlignment="Right" Margin="0,145,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e4lostfocus"/>
+                                    <TextBox Text="0"  x:Name="tb_e4_manspd" HorizontalAlignment="Right" Margin="0,172,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e4lostfocus"/>
+                                    <TextBox Text="0"  x:Name="tb_e4_axislimit" HorizontalAlignment="Right" Margin="0,199,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e4lostfocus"/>
+                                    <TextBox Text="0"  x:Name="tb_e4_ofset" HorizontalAlignment="Right" Margin="0,226,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e4lostfocus"/>
+                                    <Label Content="0"  HorizontalAlignment="Right" Margin="0,253,32,0" VerticalAlignment="Top" Width="91" Height="27"/>
+                                </Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Eksen 5" Width="400">
+                                <Grid Background="#FFE5E5E5">
+                                    <Label Content="Encoder Çarpan Değeri" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Kalkış Rampası" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Duruş Rampası" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensörüne Gitme" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensöründen Dönüş Hızı" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="229" Height="27"/>
+                                    <Label Content="Çalışma Hızı" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Manual Hız" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Eksen Limit" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Parça Tolerans" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Gerçek Değer" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <dx:SimpleButton Margin="82,0,0,49" Glyph="/img/left.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="99"/>
+                                    <dx:SimpleButton Margin="0,0,80,49" Glyph="/img/right.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="99"/>
+                                    <TextBox Text="0" x:Name="tb_e5_enc" Margin="0,10,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e5lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e5_kalkis" Margin="0,37,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e5lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e5_durus" HorizontalAlignment="Right" Margin="0,64,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e5lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e5_gohome" HorizontalAlignment="Right" Margin="0,91,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e5lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e5_backhome" HorizontalAlignment="Right" Margin="0,118,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e5lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e5_workspd" HorizontalAlignment="Right" Margin="0,145,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e5lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e5_manspd" HorizontalAlignment="Right" Margin="0,172,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e5lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e5_axislimit" HorizontalAlignment="Right" Margin="0,199,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e5lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e5_ofset" HorizontalAlignment="Right" Margin="0,226,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e5lostfocus"/>
+                                    <Label Content="0"  HorizontalAlignment="Right" Margin="0,253,32,0" VerticalAlignment="Top" Width="91" Height="27"/>
+                                </Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Eksen 6" Width="400">
+                                <Grid Background="#FFE5E5E5">
+                                    <Label Content="Encoder Çarpan Değeri" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Kalkış Rampası" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Duruş Rampası" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensörüne Gitme" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensöründen Dönüş Hızı" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="229" Height="27"/>
+                                    <Label Content="Çalışma Hızı" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Manual Hız" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Eksen Limit" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Parça Tolerans" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Gerçek Değer" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <dx:SimpleButton Margin="82,0,0,49" Glyph="/img/left.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="99"/>
+                                    <dx:SimpleButton Margin="0,0,80,49" Glyph="/img/right.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="99"/>
+                                    <TextBox Text="0" x:Name="tb_e6_enc" Margin="0,10,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e6lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e6_kalkis" Margin="0,37,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e6lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e6_durus" HorizontalAlignment="Right" Margin="0,64,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e6lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e6_gohome" HorizontalAlignment="Right" Margin="0,91,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e6lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e6_backhome" HorizontalAlignment="Right" Margin="0,118,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e6lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e6_workspd" HorizontalAlignment="Right" Margin="0,145,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e6lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e6_manspd" HorizontalAlignment="Right" Margin="0,172,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e6lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e6_axislimit" HorizontalAlignment="Right" Margin="0,199,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e6lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e6_ofset" HorizontalAlignment="Right" Margin="0,226,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e6lostfocus"/>
+                                    <Label Content="0"  HorizontalAlignment="Right" Margin="0,253,32,0" VerticalAlignment="Top" Width="91" Height="27"/>
+                                </Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Eksen 7" Width="400">
+                                <Grid Background="#FFE5E5E5">
+                                    <Label Content="Encoder Çarpan Değeri" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Kalkış Rampası" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Duruş Rampası" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensörüne Gitme" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensöründen Dönüş Hızı" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="229" Height="27"/>
+                                    <Label Content="Çalışma Hızı" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Manual Hız" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Eksen Limit" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Parça Tolerans" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Gerçek Değer" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <dx:SimpleButton Margin="82,0,0,49" Glyph="/img/left.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="99"/>
+                                    <dx:SimpleButton Margin="0,0,80,49" Glyph="/img/right.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="99"/>
+                                    <TextBox Text="0" x:Name="tb_e7_enc" Margin="0,10,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e7lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e7_kalkis" Margin="0,37,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e7lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e7_durus" HorizontalAlignment="Right" Margin="0,64,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e7lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e7_gohome" HorizontalAlignment="Right" Margin="0,91,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e7lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e7_backhome" HorizontalAlignment="Right" Margin="0,118,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e7lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e7_workspd" HorizontalAlignment="Right" Margin="0,145,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e7lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e7_manspd" HorizontalAlignment="Right" Margin="0,172,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e7lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e7_axislimit" HorizontalAlignment="Right" Margin="0,199,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e7lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e7_ofset" HorizontalAlignment="Right" Margin="0,226,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e7lostfocus"/>
+                                    <Label Content="0"  HorizontalAlignment="Right" Margin="0,253,32,0" VerticalAlignment="Top" Width="91" Height="27"/>
+                                </Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Eksen 8" Width="400">
+                                <Grid Background="#FFE5E5E5">
+                                    <Label Content="Encoder Çarpan Değeri" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Kalkış Rampası" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Duruş Rampası" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensörüne Gitme" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensöründen Dönüş Hızı" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="229" Height="27"/>
+                                    <Label Content="Çalışma Hızı" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Manual Hız" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Eksen Limit" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Parça Tolerans" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Gerçek Değer" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <dx:SimpleButton Margin="82,0,0,49" Glyph="/img/left.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="99"/>
+                                    <dx:SimpleButton Margin="0,0,80,49" Glyph="/img/right.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="99"/>
+                                    <TextBox Text="0" x:Name="tb_e8_enc" Margin="0,10,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e8lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e8_kalkis" Margin="0,37,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e8lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e8_durus" HorizontalAlignment="Right" Margin="0,64,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e8lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e8_gohome" HorizontalAlignment="Right" Margin="0,91,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e8lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e8_backhome" HorizontalAlignment="Right" Margin="0,118,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e8lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e8_workspd" HorizontalAlignment="Right" Margin="0,145,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e8lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e8_manspd" HorizontalAlignment="Right" Margin="0,172,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e8lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e8_axislimit" HorizontalAlignment="Right" Margin="0,199,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e8lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e8_ofset" HorizontalAlignment="Right" Margin="0,226,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e8lostfocus"/>
+                                    <Label Content="0"  HorizontalAlignment="Right" Margin="0,253,32,0" VerticalAlignment="Top" Width="91" Height="27"/>
+                                </Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Eksen 9" Width="400">
+                                <Grid Background="#FFE5E5E5">
+                                    <Label Content="Encoder Çarpan Değeri" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Kalkış Rampası" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Duruş Rampası" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensörüne Gitme" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Home Sensöründen Dönüş Hızı" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="229" Height="27"/>
+                                    <Label Content="Çalışma Hızı" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Manual Hız" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Eksen Limit" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Parça Tolerans" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <Label Content="Gerçek Değer" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Width="171" Height="27"/>
+                                    <dx:SimpleButton Margin="82,0,0,49" Glyph="/img/left.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="99"/>
+                                    <dx:SimpleButton Margin="0,0,80,49" Glyph="/img/right.png" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="99"/>
+                                    <TextBox Text="0" x:Name="tb_e9_enc" Margin="0,10,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e9lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e9_kalkis" Margin="0,37,32,0" HorizontalAlignment="Right" Width="91" Height="27" VerticalAlignment="Top" LostKeyboardFocus="e9lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e9_durus" HorizontalAlignment="Right" Margin="0,64,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e9lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e9_gohome" HorizontalAlignment="Right" Margin="0,91,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e9lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e9_backhome" HorizontalAlignment="Right" Margin="0,118,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e9lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e9_workspd" HorizontalAlignment="Right" Margin="0,145,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e9lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e9_manspd" HorizontalAlignment="Right" Margin="0,172,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e9lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e9_axislimit" HorizontalAlignment="Right" Margin="0,199,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e9lostfocus"/>
+                                    <TextBox Text="0" x:Name="tb_e9_ofset" HorizontalAlignment="Right" Margin="0,226,32,0" VerticalAlignment="Top" Width="91" Height="27" LostKeyboardFocus="e9lostfocus"/>
+                                    <Label Content="0" HorizontalAlignment="Right" Margin="0,253,32,0" VerticalAlignment="Top" Width="91" Height="27"/>
+                                </Grid>
+
+
+                            </dxwui:SlideViewItem>
+
+                        </dxwui:SlideView>
+
+                    </Grid>
+                </dxwui:PageViewItem>
+                <dxwui:PageViewItem x:Name="io" Header="I/O">
+                    <Grid Background="White" d:IsHidden="True">
+                        <dxwui:SlideView Header="PLC I/O" d:IsHidden="True">
+                            <dxwui:SlideViewItem Header="Ana Modül Giriş" Width="200">
+                                <Grid Background="#FFE5E5E5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="128*"/>
+                                        <ColumnDefinition Width="7"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Ana Modül Çıkış" Width="200">
+                                <Grid Background="#FFE5E5E5"></Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Giriş Modülü 1" Width="200">
+                                <Grid Background="#FFE5E5E5"></Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Giriş Modülü 2" Width="200">
+                                <Grid Background="#FFE5E5E5"></Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Giriş Modülü 3" Width="200">
+                                <Grid Background="#FFE5E5E5"></Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Çıkış Modülü 1" Width="200">
+                                <Grid Background="#FFE5E5E5"></Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Çıkış Modülü 2" Width="200">
+                                <Grid Background="#FFE5E5E5"></Grid>
+                            </dxwui:SlideViewItem>
+                            <dxwui:SlideViewItem Header="Çıkış Modülü 3" Width="200">
+                                <Grid Background="#FFE5E5E5"></Grid>
+                            </dxwui:SlideViewItem>
+                        </dxwui:SlideView>
+
+                    </Grid>
+                </dxwui:PageViewItem>
+                <dxwui:PageViewItem x:Name="sistempar" Header="Sistem Parametreleri">
+                    <Grid>
+                        <Label Content="OFSET VS."/>
+                    </Grid>
+                </dxwui:PageViewItem>
+            </dxwui:PageView>
+        </Grid>
+
+
+
+
+
+
+        <Grid Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Button Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Left" Width="118" Height="57" VerticalAlignment="Center" Click="msftp">
+                <StackPanel Width="108">
+                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\ico_man.png" Width="24" Height="24" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="-2">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.678"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Label Height="27" Content="Jog Kontrol" Width="71" Margin="25,-23,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{DynamicResource RoundedButtonStyle}"  HorizontalAlignment="Left" Margin="180,0,0,0" Width="118" Height="57" VerticalAlignment="Center" Click="otosf">
+                <StackPanel Height="52" Width="108">
+                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\cnc_ico.png" Width="24" Height="24" Margin="-61,14.1,0,0"/>
+                    <Label Width="60" Content="Otomatik" Margin="0,-25,-30,0"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Left" Margin="370,0,0,0" Width="118" Height="57" VerticalAlignment="Center" Click="rctsf">
+                <StackPanel Width="108" Height="47">
+                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\recipe_list.png" Width="24" Height="24" Margin="-43,10,0,0"/>
+                    <Label Width="46" Margin="0,-24,-33,0" Content="Reçete"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Left" Margin="575,0,0,0" Width="118" Height="57" VerticalAlignment="Center" Click="sfrsf">
+                <StackPanel Width="108">
+                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\cumpas_ico.png" Width="24" Height="24" Margin="0,0,50,0"/>
+                    <Label Width="56" Margin="32,-26,0,0" Content="Sıfırlama"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Left" Margin="783,0,0,0" VerticalAlignment="Center" Height="57" Width="118" Click="ayarsf">
+                <StackPanel Width="108">
+                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\ayarlar_ico.png" Width="24" Height="24" Margin="-50,0,0,0"/>
+                    <Label Width="49" Margin="29,-27,0,0" Content="Ayarlar"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+
+    </Grid>
+
+</Window>
