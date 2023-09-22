@@ -11,7 +11,7 @@
         xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="WpfApp8.manual"
         mc:Ignorable="d"
-         Title="Plastmak PVC" HorizontalAlignment="Center" Height="700" Width="1500" WindowState="Maximized" WindowStartupLocation="CenterScreen"  Icon="img\lgs.ico" >
+         Title="Plastmak PVC" HorizontalAlignment="Center" Height="700" Width="1500" WindowState="Maximized" WindowStartupLocation="CenterScreen" >
 
     <Window.Resources>
         <Style x:Key="FocusVisual">

@@ -27,13 +27,13 @@ namespace WpfApp8
     public partial class MainWindow : Window
     {
         
-        public OpcClient client = new OpcClient("opc.tcp://192.168.1.10:4840/");//opc.tcp://OSISTEK-EFE:48010    //opc.tcp://192.168.0.10:4840/
+        //public OpcClient client = new OpcClient("opc.tcp://192.168.1.10:4840/");//opc.tcp://OSISTEK-EFE:48010    //opc.tcp://192.168.0.10:4840/
        
         public MainWindow()
         {
             InitializeComponent();
             //   client.Security.UserIdentity = new OpcClientIdentity("eifel4125", "8445");
-            client.Connect();
+            //client.Connect();
 
         }
 

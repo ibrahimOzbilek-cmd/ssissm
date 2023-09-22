@@ -37,7 +37,7 @@ namespace WpfApp8
         DispatcherTimer timer = new DispatcherTimer();
         // numpad nmp = new numpad();
 
-        public MainWindow ns = new MainWindow();
+        //public MainWindow ns = new MainWindow();
 
 
         public manual()
@@ -200,8 +200,8 @@ namespace WpfApp8
 
         private void fls(object sender, MouseButtonEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.variable_change.x_sa", false);
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.variable_change.x_so", false);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.variable_change.x_sa", false);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.variable_change.x_so", false);
         }
 
 
@@ -209,7 +209,7 @@ namespace WpfApp8
 
         private void x_acc(object sender, TextCompositionEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.variable_change.x_ac", 50);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.variable_change.x_ac", 50);
 
         }
         #region grid change
@@ -255,60 +255,60 @@ namespace WpfApp8
         //x
         private void jog_x_sol(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e1_sol", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e1_sol", true);
         }
 
         private void jog_x_sag(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e1_sag", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e1_sag", true);
 
         }
 
         //y
         private void jog_y_sol(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e2_sol", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e2_sol", true);
         }
 
         private void jog_y_sag(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e2_sag", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e2_sag", true);
 
         }
 
         //z
         private void jog_z_sol(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e3_sol", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e3_sol", true);
         }
 
         private void jog_z_sag(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e3_sag", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e3_sag", true);
 
         }
 
         //tz
         private void jog_tz_sol(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e4_sol", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e4_sol", true);
         }
 
         private void jog_tz_sag(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e4_sag", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e4_sag", true);
 
         }
 
         //tr
         private void jog_tr_sol(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e5_sol", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e5_sol", true);
         }
 
         private void jog_tr_sag(object sender, RoutedEventArgs e)
         {
-            ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e5_sag", true);
+            //ns.client.WriteNode("ns=4;|var|Delta/x86_64/RTE/SM/CNC/ TV+WV.Application.GVL_manual.e5_sag", true);
 
         }
         private void jog_bx_sol(object sender, RoutedEventArgs e)

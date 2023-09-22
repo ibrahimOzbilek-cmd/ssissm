@@ -9,7 +9,7 @@
         
         Title="Plastmak PVC" HorizontalAlignment="Center" Height="700" Width="1000" WindowState="Maximized" WindowStartupLocation="CenterScreen"  Icon="/lgas.jpg" Activated="cnt">
     <Grid>
-        <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp7\WpfApp7\imgs\lgas.jpg" MouseLeftButtonDown="ss" Margin="112,130,112,130"/>
+        <Image Source="img/lgas.jpg" MouseLeftButtonDown="ss" Margin="112,130,112,130"/>
         <Label Content="OSISTEK ENGINEERING" HorizontalAlignment="Right" Margin="0,0,24,24" VerticalAlignment="Bottom" Height="55" Width="405" FontSize="34" FontWeight="Bold" FontFamily="Arial"/>
 
         
