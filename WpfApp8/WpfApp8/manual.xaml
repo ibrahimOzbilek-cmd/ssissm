@@ -11,7 +11,7 @@
         xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="WpfApp8.manual"
         mc:Ignorable="d"
-         Title="Plastmak PVC" HorizontalAlignment="Center" Height="700" Width="1500" WindowState="Maximized" WindowStartupLocation="CenterScreen"  Icon="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\lgs.ico" >
+         Title="Plastmak PVC" HorizontalAlignment="Center" Height="700" Width="1500" WindowState="Maximized" WindowStartupLocation="CenterScreen"  Icon="img\lgs.ico" >
 
     <Window.Resources>
         <Style x:Key="FocusVisual">
@@ -107,10 +107,10 @@
 
     <Grid>
         <Grid Margin="0,0,0,107" x:Name="mnal" d:IsHidden="True">
-            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\frz.png" Margin="238,0,0,0" HorizontalAlignment="Left" Height="370" VerticalAlignment="Bottom" Width="201"/>
-            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\testere.png" Margin="0,0,248,0" HorizontalAlignment="Right" Width="218" Height="298" VerticalAlignment="Bottom"/>
-            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\beslemecliper.png" Width="671" Height="393" Margin="178,-55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
-            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\cikistutucu.png" Margin="0,50,197,0" Height="250" VerticalAlignment="Top" HorizontalAlignment="Right" Width="293"/>
+            <Image Source="img\frz.png" Margin="238,0,0,0" HorizontalAlignment="Left" Height="370" VerticalAlignment="Bottom" Width="201"/>
+            <Image Source="img/testere.png" Margin="0,0,248,0" HorizontalAlignment="Right" Width="218" Height="298" VerticalAlignment="Bottom"/>
+            <Image Source="img\beslemecliper.png" Width="671" Height="393" Margin="178,-55,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+            <Image Source="img\cikistutucu.png" Margin="0,50,197,0" Height="250" VerticalAlignment="Top" HorizontalAlignment="Right" Width="293"/>
             <Viewbox HorizontalAlignment="Left" Stretch="Fill" VerticalAlignment="Bottom" Width="901"/>
             <Label Content="X Gerçek Ölçü:" HorizontalAlignment="Left" Margin="454,0,0,130" VerticalAlignment="Bottom"/>
             <Label Content="Y Gerçek Ölçü" HorizontalAlignment="Left" Margin="134,352,0,0" VerticalAlignment="Top"/>
@@ -159,7 +159,7 @@
             <Label Content="Jog Kontrol" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="39" Width="108" FontSize="20"/>
         </Grid>
         <Grid x:Name="oto" Margin="0,0,0,107" d:IsHidden="True">
-            <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\exprof.jpg"  Margin="585,63,199,343"/>
+            <Image Source="img\exprof.jpg"  Margin="585,63,199,343"/>
 
             <Label Margin="10,10,829,534" Content="WİLKOMMEN OTO SF"/>
             <Button Width="190" Height="90" Content="Referans" Margin="31,104,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="22"/>
@@ -179,13 +179,13 @@
         <Grid x:Name="sifirlama" Margin="0,0,0,107" d:IsHidden="True">
 
             <Grid>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\frezlzeemepng.png" Margin="319,-42,0,0" HorizontalAlignment="Left" Width="951" Height="732" VerticalAlignment="Top"/>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool10" MouseLeftButtonDown="sifirlama_tool10" Width="95" Height="221" HorizontalAlignment="Left" Margin="781,346,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool9" MouseLeftButtonDown="sifirlama_tool9" Width="158" Height="63" HorizontalAlignment="Left" Margin="520,210,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool8" MouseLeftButtonDown="sifirlama_tool8" Width="57" Height="156" HorizontalAlignment="Left" Margin="726,368,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool7" MouseLeftButtonDown="sifirlama_tool7" Width="190" Height="75" HorizontalAlignment="Left" Margin="890,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool6" MouseLeftButtonDown="sifirlama_tool6" Width="156" Height="63" HorizontalAlignment="Left" Margin="895,210,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool5" MouseLeftButtonDown="sifirlama_tool5" Width="195" Height="63" HorizontalAlignment="Left" Margin="831,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507">
+                <Image Source="img/frezlzeemepng.png" Margin="319,-42,0,0" HorizontalAlignment="Left" Width="951" Height="732" VerticalAlignment="Top"/>
+                <Image Source="img\border.png" Stretch="Fill" x:Name="img_tool10" MouseLeftButtonDown="sifirlama_tool10" Width="95" Height="221" HorizontalAlignment="Left" Margin="781,346,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="img/border.png" Stretch="Fill" x:Name="img_tool9" MouseLeftButtonDown="sifirlama_tool9" Width="158" Height="63" HorizontalAlignment="Left" Margin="520,210,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="img/border.png" Stretch="Fill" x:Name="img_tool8" MouseLeftButtonDown="sifirlama_tool8" Width="57" Height="156" HorizontalAlignment="Left" Margin="726,368,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="img/border.png" Stretch="Fill" x:Name="img_tool7" MouseLeftButtonDown="sifirlama_tool7" Width="190" Height="75" HorizontalAlignment="Left" Margin="890,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="img/border.png" Stretch="Fill" x:Name="img_tool6" MouseLeftButtonDown="sifirlama_tool6" Width="156" Height="63" HorizontalAlignment="Left" Margin="895,210,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="img/border.png" Stretch="Fill" x:Name="img_tool5" MouseLeftButtonDown="sifirlama_tool5" Width="195" Height="63" HorizontalAlignment="Left" Margin="831,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -195,8 +195,8 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" x:Name="img_tool4" MouseLeftButtonDown="sifirlama_tool4" Stretch="Fill" Width="64" Height="170" HorizontalAlignment="Left" Margin="784,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" x:Name="img_tool3" MouseLeftButtonDown="sifirlama_tool3" Stretch="Fill" Width="158" Height="74" HorizontalAlignment="Left" Margin="552,364,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.285,0.99">
+                <Image Source="img\border.png" x:Name="img_tool4" MouseLeftButtonDown="sifirlama_tool4" Stretch="Fill" Width="64" Height="170" HorizontalAlignment="Left" Margin="784,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.538,0.507"/>
+                <Image Source="img/border.png" x:Name="img_tool3" MouseLeftButtonDown="sifirlama_tool3" Stretch="Fill" Width="158" Height="74" HorizontalAlignment="Left" Margin="552,364,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.285,0.99">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -206,8 +206,8 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" Stretch="Fill" x:Name="img_tool1" MouseLeftButtonDown="sifirlama_tool1" Margin="726,25,0,0" HorizontalAlignment="Left" Width="58" Height="163" VerticalAlignment="Top" />
-                <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\border.png" x:Name="img_tool2" MouseLeftButtonDown="sifirlama_tool2" Margin="550,92,0,0" RenderTransformOrigin="0.538,0.507" HorizontalAlignment="Left" Width="176" Height="74" VerticalAlignment="Top" Stretch="Fill">
+                <Image Source="img\border.png" Stretch="Fill" x:Name="img_tool1" MouseLeftButtonDown="sifirlama_tool1" Margin="726,25,0,0" HorizontalAlignment="Left" Width="58" Height="163" VerticalAlignment="Top" />
+                <Image Source="img\border.png" x:Name="img_tool2" MouseLeftButtonDown="sifirlama_tool2" Margin="550,92,0,0" RenderTransformOrigin="0.538,0.507" HorizontalAlignment="Left" Width="176" Height="74" VerticalAlignment="Top" Stretch="Fill">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -559,7 +559,7 @@
         <Grid Margin="0,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <Button Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Left" Width="118" Height="57" VerticalAlignment="Center" Click="msftp">
                 <StackPanel Width="108">
-                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\ico_man.png" Width="24" Height="24" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="-2">
+                    <Image Source="img\ico_man.png" Width="24" Height="24" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="-2">
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -574,25 +574,25 @@
             </Button>
             <Button Style="{DynamicResource RoundedButtonStyle}"  HorizontalAlignment="Left" Margin="180,0,0,0" Width="118" Height="57" VerticalAlignment="Center" Click="otosf">
                 <StackPanel Height="52" Width="108">
-                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\cnc_ico.png" Width="24" Height="24" Margin="-61,14.1,0,0"/>
+                    <Image Source="img\cnc_ico.png" Width="24" Height="24" Margin="-61,14.1,0,0"/>
                     <Label Width="60" Content="Otomatik" Margin="0,-25,-30,0"/>
                 </StackPanel>
             </Button>
             <Button Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Left" Margin="370,0,0,0" Width="118" Height="57" VerticalAlignment="Center" Click="rctsf">
                 <StackPanel Width="108" Height="47">
-                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\recipe_list.png" Width="24" Height="24" Margin="-43,10,0,0"/>
+                    <Image Source="img\recipe_list.png" Width="24" Height="24" Margin="-43,10,0,0"/>
                     <Label Width="46" Margin="0,-24,-33,0" Content="Reçete"/>
                 </StackPanel>
             </Button>
             <Button Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Left" Margin="575,0,0,0" Width="118" Height="57" VerticalAlignment="Center" Click="sfrsf">
                 <StackPanel Width="108">
-                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\cumpas_ico.png" Width="24" Height="24" Margin="0,0,50,0"/>
+                    <Image Source="img\cumpas_ico.png" Width="24" Height="24" Margin="0,0,50,0"/>
                     <Label Width="56" Margin="32,-26,0,0" Content="Sıfırlama"/>
                 </StackPanel>
             </Button>
             <Button Style="{DynamicResource RoundedButtonStyle}" HorizontalAlignment="Left" Margin="783,0,0,0" VerticalAlignment="Center" Height="57" Width="118" Click="ayarsf">
                 <StackPanel Width="108">
-                    <Image Source="C:\Users\LENOVO\source\repos\WpfApp1\WpfApp8\WpfApp8\img\ayarlar_ico.png" Width="24" Height="24" Margin="-50,0,0,0"/>
+                    <Image Source="img\ayarlar_ico.png" Width="24" Height="24" Margin="-50,0,0,0"/>
                     <Label Width="49" Margin="29,-27,0,0" Content="Ayarlar"/>
                 </StackPanel>
             </Button>

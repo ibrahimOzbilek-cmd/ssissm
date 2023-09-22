@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\ibrah\Downloads\ssissm\WpfApp8\WpfApp8\obj\Debug\
+C:\Users\ibrah\Downloads\ssissm\WpfApp8\WpfApp8\obj\Release\
 WpfApp8
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\ibrah\Downloads\ssissm\WpfApp8\WpfApp8\App.xaml
 31920754
 
@@ -16,5 +16,5 @@ C:\Users\ibrah\Downloads\ssissm\WpfApp8\WpfApp8\App.xaml
 45-1665675039
 INPUT_OUTPUT.xaml;MainWindow.xaml;manual.xaml;
 
-False
+True
 
